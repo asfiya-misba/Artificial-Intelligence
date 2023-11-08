@@ -1,75 +1,82 @@
-Name: Asfiya Misba
-Student ID: 1002028239
+# Expense 8 Puzzle Problem Solver
 
-CSE - 5360 - Assignment 1
+This project is a Python-based implementation of a modified version of the classic 8 puzzle problem, known as the "Expense 8 Puzzle Problem." In this puzzle, you are given a 3x3 grid with 8 tiles placed on it, and your goal is to rearrange the tiles from a starting configuration to a desired configuration. The twist in this version is that each tile's number also represents the cost associated with moving that tile.
 
-**********************************************************************
-Language: Python
-Version: 3.10
+## Usage
 
-***********************************************************************
-Contents:
-->README.txt
-->main.py
-->start.txt
-->goal.txt
-->dump_file.txt
+To run the solver, use the following command line invocation:
 
-*********************************************************************
-Code Structure:
-1. File is created in the global space in write mode and flag is set as False.
-2. In the Class Node, the following methods are defined, 
-	# Method to find the path to the root
-	# Method to expand the node
-	# Method to find the children
-	# Method to list the moves that make up the solution
-	# method to compare 2 nodes based on their pathCost attribute
-3. In the Class EightPuzzle, the following methods are defined,
-	# Method to find the empty tile
-	# Method to find the path cost
-	# Method to check if the current state is the goal state
-	# Method to find the next move to be performed
-	# Method to find the sequence of moves leading to the goal state
-4. Heuristic methods are defined and a method to read the contents of the start and goal state are defined.
-5. Methods for each of the algorithms are defined.
+```
+expense_8_puzzle.py <start-file> <goal-file> <method> <dump-flag>
+```
 
+- `<start-file>` and `<goal-file>` are required input files that specify the initial and target configurations.
+- `<method>` can be one of the following search methods:
+  - `bfs`: Breadth First Search
+  - `ucs`: Uniform Cost Search
+  - `dfs`: Depth First Search
+  - `dls`: Depth Limited Search (Extra Credit for CSE 4308 students)
+  - `ids`: Iterative Deepening Search (Extra Credit for CSE 4308 students)
+  - `greedy`: Greedy Search
+  - `a*`: A* Search (Default if no method is given)
+- `<dump-flag>` is optional and can be set to `true` to dump a search trace for analysis in a file named `trace-<date>-<time>.txt`.
 
-***********************************************************************
-Steps to execute:
-1. Copy all the files into a folder
-2. Run the code using,
-				python main.py start.txt goal.txt bfs true
-3. This will also create a dump file
-4. To run without dump file use,
-				python main.py start.txt goal.txt bfs false
-5. Giving python main.py start.txt goal.txt, will execute the method a* and will not generate any dump file.
+## Input Files
 
+Both the start file and goal file should follow the format shown in the sample files included in this project.
 
-Note: 
-1. The dump file is created but it is only written when the last command line argument is true.
-2. Use the following to give the method names as command line arguments,
-	bfs, dfs, ucs, ids, dls, greedy, a*
+### Sample Start file
+```
+2 8 3
+1 6 4
+7 0 5
+```
 
+### Sample Goal file
+```
+1 2 3
+8 0 4
+7 6 5
+```
 
+## Output Format
 
-**************************************************************************
-Sample Output:
+The solver provides the following output:
 
-(venv) PS C:\Users\asfiy\PycharmProjects\ai_assignment1_new> python main.py start.txt goal.txt bfs true
-Nodes Popped =  1531
-Nodes Expanded =  1395
-Nodes Generated =  2573
-Max Fringe Size =  1041
-Solution found at depth =  12
-Steps: 
-['Move 7 RIGHT', 'Move 8 DOWN', 'Move 4 LEFT', 'Move 1 UP', 'Move 5 RIGHT', 'Move 3 UP', 'Move 2 LEFT', 'Move 8 LEFT', 'Move 3 DOWN', 'Move 6 DOWN', 'Move 7 RIGHT', 'Move 8 RIGHT']
-(venv) PS C:\Users\asfiy\PycharmProjects\ai_assignment1_new> 
+- Number of nodes popped
+- Number of nodes expanded
+- Number of nodes generated
+- Maximum fringe size
+- Solution depth and cost
+- A sequence of steps to reach the solution
 
+Here's an example output for the A* search with a dump flag set to `true`:
 
-*********************************************************************************
-References:
-https://www.omnicalculator.com/math/manhattan-distance
-https://www.geeksforgeeks.org/8-puzzle-problem-using-branch-and-bound/
-https://blog.goodaudience.com/solving-8-puzzle-using-a-algorithm-7b509c331288
-https://www.javatpoint.com/8-puzzle-problem-in-python
+```
+Nodes Popped: 97
+Nodes Expanded: 64
+Nodes Generated: 173
+Max Fringe Size: 77
+Solution Found at depth 12 with a cost of 63.
+Steps:
+    Move 7 Left
+    Move 5 Up
+    Move 8 Right
+    Move 7 Down
+    Move 5 Left
+    Move 6 Down
+    Move 3 Right
+    Move 2 Right
+    Move 1 Up
+    Move 4 Up
+    Move 7 Left
+    Move 8 Left
+```
 
+## Heuristic
+
+For the Greedy and A* search methods, the solver employs an acceptable heuristic. The heuristic used is a modified version of h2, which you can find more details about in the provided classes or documentation.
+
+## Additional Notes
+
+- Implementing Depth Limited Search (DLS) and Iterative Deepening Search (IDS) is required for CSE 5360 students but optional for CSE 4308 students (and carries up to 40 points extra credit).
