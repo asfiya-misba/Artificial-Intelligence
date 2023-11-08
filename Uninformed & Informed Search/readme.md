@@ -73,10 +73,3 @@ Steps:
     Move 8 Left
 ```
 
-## Heuristic
-
-For the Greedy and A* search methods, the solver employs an acceptable heuristic. The heuristic used is a modified version of h2, which you can find more details about in the provided classes or documentation.
-
-## Additional Notes
-
-- Implementing Depth Limited Search (DLS) and Iterative Deepening Search (IDS) is required for CSE 5360 students but optional for CSE 4308 students (and carries up to 40 points extra credit).
