@@ -7,7 +7,7 @@ This project is a Python-based implementation of a modified version of the class
 To run the solver, use the following command line invocation:
 
 ```
-expense_8_puzzle.py <start-file> <goal-file> <method> <dump-flag>
+main.py <start-file> <goal-file> <method> <dump-flag>
 ```
 
 - `<start-file>` and `<goal-file>` are required input files that specify the initial and target configurations.
